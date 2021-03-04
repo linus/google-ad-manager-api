@@ -37,7 +37,7 @@ export class DFP {
             get: function get(target, propertyKey) {
                 const method = propertyKey.toString();
                 if (target.hasOwnProperty(method) && !['setToken'].includes(method)) {
-                    return async function run(dto: any) {
+                    return async function run(dto: any = {}) {
                         const res = await promiseFromCallback((cb) => client[method](dto, cb));
                         return DFP.parse(res);
                     };
